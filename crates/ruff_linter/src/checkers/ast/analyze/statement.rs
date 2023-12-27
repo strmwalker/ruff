@@ -353,6 +353,11 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
                     .diagnostics
                     .extend(ruff::rules::unreachable::in_function(name, body));
             }
+            if checker.enabled(Rule::TooManyAwaits) {
+                if let Some(diagnostic) = wemake_python_styleguide::too_many_awaits(function_def) {
+                    checker.diagnostics.push(diagnostic)
+                }
+            }
             if checker.enabled(Rule::TooManyAsserts) {
                 if let Some(diagnostic) = wemake_python_styleguide::too_many_asserts(function_def) {
                     checker.diagnostics.push(diagnostic)
