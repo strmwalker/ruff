@@ -1,6 +1,6 @@
 use ruff_diagnostics::{Diagnostic, Violation};
 use ruff_macros::{derive_message_formats, violation};
-use ruff_python_ast::ExprBoolOp;
+use ruff_python_ast::{Expr, ExprBoolOp};
 
 const MAX_CONDITIONS: usize = 4;
 
@@ -22,7 +22,7 @@ fn count_conditions(bool_op: &ExprBoolOp) -> usize {
         .values
         .iter()
         .map(|x| match x {
-            ruff_python_ast::Expr::BoolOp(nested) => count_conditions(nested),
+            Expr::BoolOp(nested) => count_conditions(nested),
             _ => 1,
         })
         .sum()
