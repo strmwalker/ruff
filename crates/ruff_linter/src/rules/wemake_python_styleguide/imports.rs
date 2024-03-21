@@ -1,9 +1,9 @@
+use crate::checkers::ast::Checker;
+use crate::registry::Rule;
 use ruff_diagnostics::{Diagnostic, Violation};
 use ruff_macros::{derive_message_formats, violation};
 use ruff_python_ast::{self as ast, Stmt, Suite};
 use ruff_text_size::TextRange;
-use crate::checkers::ast::Checker;
-use crate::registry::Rule;
 
 #[violation]
 pub struct TooManyImports {
@@ -22,7 +22,6 @@ impl Violation for TooManyImports {
     }
 }
 
-
 #[violation]
 pub struct TooManyImportedNames {
     imported_names: usize,
@@ -36,7 +35,9 @@ impl Violation for TooManyImportedNames {
             imported_names,
             max_imported_names,
         } = self;
-        format!("Found module with too many imported names ({imported_names} > {max_imported_names})")
+        format!(
+            "Found module with too many imported names ({imported_names} > {max_imported_names})"
+        )
     }
 }
 
@@ -64,12 +65,24 @@ pub(crate) fn module_complexity(checker: &mut Checker, suite: &Suite) {
     let range = TextRange::default();
     if checker.enabled(Rule::TooManyImports) {
         if import_statements > 12 {
-            checker.diagnostics.push(Diagnostic::new(TooManyImports { import_statements, max_import_statements: 12 }, range));
+            checker.diagnostics.push(Diagnostic::new(
+                TooManyImports {
+                    import_statements,
+                    max_import_statements: 12,
+                },
+                range,
+            ));
         }
     }
     if checker.enabled(Rule::TooManyImportedNames) {
         if imported_names > 12 {
-            checker.diagnostics.push(Diagnostic::new(TooManyImportedNames { imported_names, max_imported_names: 12 }, range))
+            checker.diagnostics.push(Diagnostic::new(
+                TooManyImportedNames {
+                    imported_names,
+                    max_imported_names: 12,
+                },
+                range,
+            ))
         }
     }
 }

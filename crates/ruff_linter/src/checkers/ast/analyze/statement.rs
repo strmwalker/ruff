@@ -350,7 +350,9 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
                 flake8_bandit::rules::ssl_with_bad_defaults(checker, function_def);
             }
             if checker.enabled(Rule::TooManyDecorators) {
-                if let Some(diagnostic) = wemake_python_styleguide::too_many_decorators(decorator_list) {
+                if let Some(diagnostic) =
+                    wemake_python_styleguide::too_many_decorators(decorator_list)
+                {
                     checker.diagnostics.push(diagnostic)
                 }
             }
@@ -525,17 +527,22 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
                 refurb::rules::metaclass_abcmeta(checker, class_def);
             }
             if checker.enabled(Rule::TooManyBaseClasses) {
-                if let Some(diagnostic) = wemake_python_styleguide::too_many_base_classes(class_def) {
+                if let Some(diagnostic) = wemake_python_styleguide::too_many_base_classes(class_def)
+                {
                     checker.diagnostics.push(diagnostic)
                 }
             }
             if checker.enabled(Rule::TooManyMethods) {
-                if let Some(diagnostic) = wemake_python_styleguide::too_many_methods(checker, class_def) {
+                if let Some(diagnostic) =
+                    wemake_python_styleguide::too_many_methods(checker, class_def)
+                {
                     checker.diagnostics.push(diagnostic)
                 }
             }
             if checker.enabled(Rule::TooManyDecorators) {
-                if let Some(diagnostic) = wemake_python_styleguide::too_many_decorators(decorator_list) {
+                if let Some(diagnostic) =
+                    wemake_python_styleguide::too_many_decorators(decorator_list)
+                {
                     checker.diagnostics.push(diagnostic)
                 }
             }

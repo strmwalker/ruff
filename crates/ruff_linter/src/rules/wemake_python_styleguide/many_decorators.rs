@@ -1,8 +1,7 @@
-use ruff_python_ast::Decorator;
 use ruff_diagnostics::{Diagnostic, Violation};
 use ruff_macros::{derive_message_formats, violation};
+use ruff_python_ast::Decorator;
 use ruff_text_size::TextRange;
-
 
 #[violation]
 pub struct TooManyDecorators {
@@ -25,6 +24,14 @@ pub(crate) fn too_many_decorators(decorator_list: &[Decorator]) -> Option<Diagno
     let decorators = decorator_list.len();
 
     if decorators > 2 {
-        Some(Diagnostic::new(TooManyDecorators { decorators, max_decorators: 2 }, TextRange::default()))
-    } else { None }
+        Some(Diagnostic::new(
+            TooManyDecorators {
+                decorators,
+                max_decorators: 2,
+            },
+            TextRange::default(),
+        ))
+    } else {
+        None
+    }
 }
