@@ -1,5 +1,4 @@
 use ruff_python_ast::str::raw_contents_range;
-use ruff_python_ast::StmtClassDef;
 use ruff_text_size::{Ranged, TextRange};
 
 use ruff_python_semantic::{
@@ -313,9 +312,6 @@ pub(crate) fn definitions(checker: &mut Checker) {
             }
         }
 
-        match definition.as_class_def() {
-            Some(..) => {}
-            None => {}
-        }
+        if definition.as_class_def().is_some() {}
     }
 }

@@ -353,22 +353,22 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
                 if let Some(diagnostic) =
                     wemake_python_styleguide::too_many_decorators(decorator_list)
                 {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
             if checker.enabled(Rule::TooManyAwaits) {
                 if let Some(diagnostic) = wemake_python_styleguide::too_many_awaits(function_def) {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
             if checker.enabled(Rule::TooManyAsserts) {
                 if let Some(diagnostic) = wemake_python_styleguide::too_many_asserts(function_def) {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
             if checker.enabled(Rule::TooManyRaises) {
-                if let Some(diagnostic) = wemake_python_styleguide::too_many_raises(&body) {
-                    checker.diagnostics.push(diagnostic)
+                if let Some(diagnostic) = wemake_python_styleguide::too_many_raises(body) {
+                    checker.diagnostics.push(diagnostic);
                 }
             }
         }
@@ -529,21 +529,21 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
             if checker.enabled(Rule::TooManyBaseClasses) {
                 if let Some(diagnostic) = wemake_python_styleguide::too_many_base_classes(class_def)
                 {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
             if checker.enabled(Rule::TooManyMethods) {
                 if let Some(diagnostic) =
                     wemake_python_styleguide::too_many_methods(checker, class_def)
                 {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
             if checker.enabled(Rule::TooManyDecorators) {
                 if let Some(diagnostic) =
                     wemake_python_styleguide::too_many_decorators(decorator_list)
                 {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
         }
@@ -1203,7 +1203,7 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
 
             if checker.enabled(Rule::TooManyElifs) {
                 if let Some(diagnostic) = wemake_python_styleguide::too_many_elifs(if_) {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
         }
@@ -1443,7 +1443,7 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
             }
             if checker.enabled(Rule::TooManyExcepts) {
                 if let Some(diagnostic) = wemake_python_styleguide::too_many_excepts(try_) {
-                    checker.diagnostics.push(diagnostic)
+                    checker.diagnostics.push(diagnostic);
                 }
             }
         }
@@ -1560,7 +1560,7 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
                 }
             }
             if checker.enabled(Rule::TooManyValuesToUnpack) {
-                wemake_python_styleguide::too_many_values_to_unpack(checker, assign)
+                wemake_python_styleguide::too_many_values_to_unpack(checker, assign);
             }
         }
         Stmt::AnnAssign(

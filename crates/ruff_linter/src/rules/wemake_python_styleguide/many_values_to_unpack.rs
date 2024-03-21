@@ -28,7 +28,7 @@ pub(crate) fn too_many_values_to_unpack(checker: &mut Checker, assign: &StmtAssi
                 checker.diagnostics.push(Diagnostic::new(
                     TooManyValuesToUnpack(tup.elts.len()),
                     tup.range,
-                ))
+                ));
             }
         }
     }

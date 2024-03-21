@@ -48,11 +48,11 @@ fn count_imports(stmts: &[Stmt]) -> (usize, usize) {
         match stmt {
             Stmt::Import(ast::StmtImport { names, .. }) => {
                 import_statements += 1;
-                imported_names += names.len()
+                imported_names += names.len();
             }
             Stmt::ImportFrom(ast::StmtImportFrom { names, .. }) => {
                 import_statements += 1;
-                imported_names += names.len()
+                imported_names += names.len();
             }
             _ => {}
         }
@@ -82,7 +82,7 @@ pub(crate) fn module_complexity(checker: &mut Checker, suite: &Suite) {
                     max_imported_names: 12,
                 },
                 range,
-            ))
+            ));
         }
     }
 }

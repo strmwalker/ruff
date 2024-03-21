@@ -19,14 +19,14 @@ impl Violation for TooManyAwaits {
 }
 
 #[derive(Default)]
-pub struct AwaitExprVisitor<'a> {
-    pub awaits: Vec<&'a ast::ExprAwait>,
+pub(crate) struct AwaitExprVisitor<'a> {
+    pub(crate) awaits: Vec<&'a ast::ExprAwait>,
 }
 
 impl<'a> Visitor<'a> for AwaitExprVisitor<'a> {
     fn visit_expr(&mut self, expr: &'a Expr) {
         if expr.is_await_expr() {
-            self.awaits.push(expr.as_await_expr().unwrap())
+            self.awaits.push(expr.as_await_expr().unwrap());
         }
     }
 }

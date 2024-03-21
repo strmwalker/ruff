@@ -11,7 +11,7 @@ pub(crate) fn module(suite: &Suite, checker: &mut Checker) {
     }
 
     if checker.any_enabled(&[Rule::TooManyImports, Rule::TooManyImportedNames]) {
-        wemake_python_styleguide::module_complexity(checker, suite)
+        wemake_python_styleguide::module_complexity(checker, suite);
     }
 
     if checker.enabled(Rule::InvalidFormatterSuppressionComment) {

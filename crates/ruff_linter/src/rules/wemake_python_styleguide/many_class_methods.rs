@@ -29,14 +29,13 @@ pub(crate) fn too_many_methods(
 ) -> Option<Diagnostic> {
     let mut methods = 0;
 
-    for stmt in class_def.body.iter() {
+    for stmt in &class_def.body {
         if let ast::Stmt::FunctionDef(ast::StmtFunctionDef { decorator_list, .. }) = stmt {
             // Ignore any functions that are `@overload`.
             if visibility::is_overload(decorator_list, checker.semantic()) {
                 continue;
-            } else {
-                methods += 1
             }
+            methods += 1;
         }
     }
 

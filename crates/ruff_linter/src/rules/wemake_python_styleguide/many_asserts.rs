@@ -22,8 +22,8 @@ impl Violation for TooManyAsserts {
 }
 
 #[derive(Default)]
-pub struct AssertStatementVisitor<'a> {
-    pub asserts: Vec<&'a ast::StmtAssert>,
+pub(crate) struct AssertStatementVisitor<'a> {
+    pub(crate) asserts: Vec<&'a ast::StmtAssert>,
 }
 
 impl<'a, 'b> StatementVisitor<'b> for AssertStatementVisitor<'a>
