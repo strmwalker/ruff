@@ -17,6 +17,7 @@ use crate::rules::{
     flake8_logging_format, flake8_pie, flake8_print, flake8_pyi, flake8_pytest_style, flake8_self,
     flake8_simplify, flake8_tidy_imports, flake8_trio, flake8_type_checking, flake8_use_pathlib,
     flynt, numpy, pandas_vet, pep8_naming, pycodestyle, pyflakes, pylint, pyupgrade, refurb, ruff,
+    wemake_python_styleguide,
 };
 use crate::settings::types::PythonVersion;
 
@@ -1524,6 +1525,11 @@ pub(crate) fn expression(expr: &Expr, checker: &mut Checker) {
             }
             if checker.enabled(Rule::ParenthesizeChainedOperators) {
                 ruff::rules::parenthesize_chained_logical_operators(checker, bool_op);
+            }
+            if checker.enabled(Rule::TooManyConditions) {
+                if let Some(diagnostic) = wemake_python_styleguide::too_many_conditions(bool_op) {
+                    checker.diagnostics.push(diagnostic)
+                }
             }
         }
         Expr::Named(..) => {

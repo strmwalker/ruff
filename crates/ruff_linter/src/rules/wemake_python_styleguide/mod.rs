@@ -9,6 +9,7 @@ pub(crate) use many_elifs::*;
 pub(crate) use many_raises::*;
 pub(crate) use many_excepts::*;
 pub(crate) use many_values_to_unpack::*;
+pub(crate) use many_conditions::*;
 
 mod imports;
 mod definitions;
@@ -23,3 +24,4 @@ mod many_raises;
 mod many_elifs;
 mod many_values_to_unpack;
 mod many_excepts;
+mod many_conditions;
