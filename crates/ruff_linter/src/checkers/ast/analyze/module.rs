@@ -2,12 +2,15 @@ use ruff_python_ast::Suite;
 
 use crate::checkers::ast::Checker;
 use crate::codes::Rule;
-use crate::rules::{flake8_bugbear, wemake_python_styleguide};
+use crate::rules::{flake8_bugbear, ruff, wemake_python_styleguide};
 
 /// Run lint rules over a module.
 pub(crate) fn module(suite: &Suite, checker: &mut Checker) {
     if checker.enabled(Rule::FStringDocstring) {
         flake8_bugbear::rules::f_string_docstring(checker, suite);
+    }
+    if checker.enabled(Rule::InvalidFormatterSuppressionComment) {
+        ruff::rules::ignored_formatter_suppression_comment(checker, suite);
     }
 
     if checker.any_enabled(&[Rule::TooManyImports, Rule::TooManyImportedNames]) {

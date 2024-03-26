@@ -115,6 +115,9 @@ pub enum Linter {
     /// [flake8-import-conventions](https://github.com/joaopalmeiro/flake8-import-conventions)
     #[prefix = "ICN"]
     Flake8ImportConventions,
+    /// [flake8-logging](https://pypi.org/project/flake8-logging/)
+    #[prefix = "LOG"]
+    Flake8Logging,
     /// [flake8-logging-format](https://pypi.org/project/flake8-logging-format/)
     #[prefix = "G"]
     Flake8LoggingFormat,
@@ -202,9 +205,6 @@ pub enum Linter {
     /// [refurb](https://pypi.org/project/refurb/)
     #[prefix = "FURB"]
     Refurb,
-    /// [flake8-logging](https://pypi.org/project/flake8-logging/)
-    #[prefix = "LOG"]
-    Flake8Logging,
     /// [wemake_python_styleguide](https://wemake-python-styleguide.readthedocs.io/en/latest/index.html)
     #[prefix = "WPS"]
     WemakePythonStyleguide,
@@ -259,14 +259,14 @@ impl Rule {
             | Rule::MixedSpacesAndTabs
             | Rule::TrailingWhitespace => LintSource::PhysicalLines,
             Rule::AmbiguousUnicodeCharacterComment
-            | Rule::AmbiguousUnicodeCharacterDocstring
-            | Rule::AmbiguousUnicodeCharacterString
             | Rule::AvoidableEscapedQuote
-            | Rule::BadQuotesDocstring
-            | Rule::BadQuotesInlineString
-            | Rule::BadQuotesMultilineString
             | Rule::BlanketNOQA
             | Rule::BlanketTypeIgnore
+            | Rule::BlankLineAfterDecorator
+            | Rule::BlankLineBetweenMethods
+            | Rule::BlankLinesAfterFunctionOrClass
+            | Rule::BlankLinesBeforeNestedDefinition
+            | Rule::BlankLinesTopLevel
             | Rule::CommentedOutCode
             | Rule::EmptyComment
             | Rule::ExtraneousParentheses
@@ -299,6 +299,8 @@ impl Rule {
             | Rule::ShebangNotFirstLine
             | Rule::SingleLineImplicitStringConcatenation
             | Rule::TabIndentation
+            | Rule::TooManyBlankLines
+            | Rule::TooManyNewlinesAtEndOfFile
             | Rule::TrailingCommaOnBareTuple
             | Rule::TypeCommentInStub
             | Rule::UselessSemicolon
@@ -326,6 +328,7 @@ impl Rule {
             | Rule::NoSpaceAfterBlockComment
             | Rule::NoSpaceAfterInlineComment
             | Rule::OverIndented
+            | Rule::RedundantBackslash
             | Rule::TabAfterComma
             | Rule::TabAfterKeyword
             | Rule::TabAfterOperator
