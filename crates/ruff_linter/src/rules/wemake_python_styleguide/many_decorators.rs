@@ -4,6 +4,22 @@ use ruff_macros::{derive_message_formats, violation};
 use ruff_text_size::TextRange;
 
 
+/// Restrict the maximum number of decorators.
+/// 
+/// Reasoning:
+///     When you are using too many decorators it means that
+///     you are trying to overuse the magic.
+///     You have to ask yourself: do I really know what happens inside
+///     this decorator tree? Typically, the answer will be "no".
+/// 
+/// Solution:
+///     Using too many decorators typically means that
+///     you are trying to configure the behavior from outside of the class.
+///     Do not do that too much.
+///     Split functions or classes into smaller ones.
+///     Use higher order decorators.
+/// 
+/// This rule checks: functions, methods, and classes.
 #[violation]
 pub struct TooManyDecorators {
     decorators: usize,

@@ -5,6 +5,17 @@ use ruff_python_ast::statement_visitor::{StatementVisitor, walk_stmt};
 use ruff_text_size::TextRange;
 
 
+/// ## What it does
+///
+/// ## Why is this bad?
+///
+/// ## Example
+/// ```python
+/// ```
+///
+/// Use instead:
+/// ```python
+/// ```
 #[violation]
 pub struct TooManyAsserts {
     asserts: usize,

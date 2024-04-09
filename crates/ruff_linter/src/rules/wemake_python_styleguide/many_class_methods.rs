@@ -7,6 +7,26 @@ use ruff_python_semantic::analyze::visibility;
 use crate::checkers::ast::Checker;
 
 
+/// Forbid too many methods in a single class.
+/// 
+/// Reasoning:
+///     Having too many methods might lead to the "God object" anti-pattern.
+///     This kind of object can handle everything.
+///     So, in the end, your code becomes too hard to maintain and test.
+/// 
+/// Solution:
+///     What to do if you have too many methods in a single class?
+///     Split this class into several classes,
+///     then use composition or inheritance to refactor your code.
+///     This will protect you from the "God object" anti-pattern.
+/// 
+/// We do not make any distinctions between instance and class methods.
+/// We also do not care about functions and classes being public or not.
+/// We also do not count inherited methods from parents.
+/// This rule does not count the attributes of a class.
+/// 
+/// See also:
+///     https://en.wikipedia.org/wiki/God_object
 #[violation]
 pub struct TooManyMethods {
     methods: usize,

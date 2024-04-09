@@ -1,6 +1,7 @@
 use ruff_diagnostics::Violation;
 use ruff_macros::{derive_message_formats, violation};
 
+/// ## What it does
 #[violation]
 pub struct TooManyModuleMembers {
     module_members: usize,

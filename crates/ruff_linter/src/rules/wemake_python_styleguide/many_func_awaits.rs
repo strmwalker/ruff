@@ -5,6 +5,15 @@ use ruff_text_size::TextRange;
 use ruff_python_ast::visitor::Visitor;
 
 
+/// Forbid placing too many ``await`` expressions in a function.
+/// 
+/// Reasoning:
+///     When there are too many ``await`` keywords,
+///     functions are starting to get really complex.
+///     It is hard to tell where we are and what is going on.
+/// 
+/// Solution:
+///     Change your design. Split functions into smaller ones.
 #[violation]
 pub struct TooManyAwaits {
     awaits: usize,

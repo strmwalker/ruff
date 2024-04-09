@@ -5,6 +5,7 @@ use ruff_text_size::TextRange;
 use crate::checkers::ast::Checker;
 use crate::registry::Rule;
 
+/// bjlhfasglksjdfhglksj
 #[violation]
 pub struct TooManyImports {
     import_statements: usize,
@@ -23,6 +24,30 @@ impl Violation for TooManyImports {
 }
 
 
+/// Forbid modules with too many imports.
+///
+///     Namespaces are one honking great idea -- let's do more of those!
+///
+///     Reasoning:
+///         Having too many imports without prefixes is quite expensive.
+///         You have to memorize all the source locations of the imports
+///         and sometimes it is hard to remember what kind of functions and classes
+///         are already injected into your context.
+///
+///         It is also a questionable design if a single module has a lot of
+///         imports. Why would a single module have so many dependencies?
+///         So, the module becomes too coupled.
+///
+///     Solution:
+///         Refactor the imports to import a common namespace. Something like
+///         ``from package import module`` and then
+///         use it like ``module.function()``.
+///
+///         Or refactor your code and split the complex module
+///         into several modules.
+///
+///     We do not make any distinction between
+///     ``import`` and ``from ... import ...``.
 #[violation]
 pub struct TooManyImportedNames {
     imported_names: usize,

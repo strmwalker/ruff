@@ -13,9 +13,7 @@ pub(crate) use many_conditions::*;
 
 mod imports;
 mod definitions;
-
 mod complexity;
-
 mod many_class_methods;
 mod many_decorators;
 mod many_func_awaits;
