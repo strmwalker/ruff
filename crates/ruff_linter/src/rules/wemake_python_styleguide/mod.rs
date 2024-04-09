@@ -10,6 +10,7 @@ pub(crate) use many_excepts::*;
 pub(crate) use many_func_awaits::*;
 pub(crate) use many_raises::*;
 pub(crate) use many_values_to_unpack::*;
+pub(crate) use many_imported_module_members::*;
 
 mod complexity;
 mod definitions;
@@ -23,3 +24,4 @@ mod many_excepts;
 mod many_func_awaits;
 mod many_raises;
 mod many_values_to_unpack;
+mod many_imported_module_members;
