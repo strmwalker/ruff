@@ -4,6 +4,22 @@ use ruff_python_ast::{Expr, ExprBoolOp};
 
 const MAX_CONDITIONS: usize = 4;
 
+/// Forbid conditions with too many logical operators.
+///
+/// We use :str:`wemake_python_styleguide.constants.MAX_CONDITIONS`
+/// as a default value.
+///
+/// Reasoning:
+///     When reading through the complex conditions you will fail
+///     to understand all the possible branches. And you will end up putting
+///     debug breakpoint on this line just to figure out how it works.
+///
+/// Solution:
+///     We can reduce the complexity of a single ``if`` by doing two things:
+///     creating new variables or creating nested ``if`` statements.
+///     Both of these actions will trigger other complexity checks.
+///
+/// We count ``and`` and ``or`` keywords as conditions.
 #[violation]
 pub struct TooManyConditions(usize);
 

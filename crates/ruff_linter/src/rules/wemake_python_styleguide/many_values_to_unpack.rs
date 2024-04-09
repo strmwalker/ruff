@@ -6,6 +6,22 @@ use crate::checkers::ast::Checker;
 
 const MAX_VALUES: usize = 4;
 
+/// Forbid using too many variables to unpack a tuple.
+///
+/// Reasoning:
+///     The order and meaning are hard to remember.
+///
+/// Solution:
+///     If you have more than 2 values in a tuple, consider using
+///     ``typing.NamedTuple`` or a dataclass instead.
+///
+/// Example::
+///
+///     # Correct:
+///     result = foo()
+///
+///     # Wrong:
+///     a, b, c, d, e = foo()
 #[violation]
 pub struct TooManyValuesToUnpack(usize);
 
