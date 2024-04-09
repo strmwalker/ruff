@@ -7,11 +7,11 @@ use ruff_python_ast::Stmt;
 const MAX_RAISES: usize = 3;
 
 /// Forbids too many ``raise`` statements in a function.
-/// 
+///
 /// Reasoning:
 ///     Too many ``raise`` statements in a function make the code
 ///     untraceable and overcomplicated.
-/// 
+///
 /// Solution:
 ///     Split the function into smaller functions, such that
 ///     each of them can raise less errors.

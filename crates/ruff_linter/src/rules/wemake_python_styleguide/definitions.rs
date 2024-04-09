@@ -13,7 +13,7 @@ impl Violation for TooManyModuleMembers {
     fn message(&self) -> String {
         let TooManyModuleMembers {
             module_members,
-            max_module_members
+            max_module_members,
         } = self;
         format!("Found a module with too many members ({module_members} > {max_module_members})")
     }
