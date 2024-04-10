@@ -737,6 +737,11 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
                     }
                 }
             }
+            if checker.enabled(Rule::TooManyImportedModuleMembers) {
+                if let Some(diagnostic) = wemake_python_styleguide::too_many_imported_module_members(names, stmt) {
+                    checker.diagnostics.push(diagnostic);
+                }
+            }
         }
         Stmt::ImportFrom(
             import_from @ ast::StmtImportFrom {
@@ -1037,6 +1042,11 @@ pub(crate) fn statement(stmt: &Stmt, checker: &mut Checker) {
                     &helpers::format_import_from(level, module),
                     &checker.settings.flake8_import_conventions.banned_from,
                 ) {
+                    checker.diagnostics.push(diagnostic);
+                }
+            }
+            if checker.enabled(Rule::TooManyImportedModuleMembers) {
+                if let Some(diagnostic) = wemake_python_styleguide::too_many_imported_module_members(names, stmt) {
                     checker.diagnostics.push(diagnostic);
                 }
             }

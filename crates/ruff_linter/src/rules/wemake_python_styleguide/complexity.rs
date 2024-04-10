@@ -3,7 +3,8 @@ use ruff_macros::{derive_message_formats, violation};
 use ruff_python_ast::identifier::Identifier;
 use ruff_python_ast::{Stmt, StmtClassDef};
 
-///
+/// ## What it does
+
 #[violation]
 pub struct TooManyBaseClasses {
     bases: usize,
